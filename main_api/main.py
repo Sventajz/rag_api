@@ -25,6 +25,7 @@ app.add_middleware(
 class Query(BaseModel):
     query: str
 
+
 pc = Pinecone(api_key=os.environ['PINECONE_API_KEY'])
 chat = ChatOpenAI(
     openai_api_key=os.environ['OPENAI_API_KEY'],
@@ -68,6 +69,7 @@ async def create_query(query: Query):
     messages.append(prompt)
     res = chat(messages)
     return {res.content}
+
 
 @app.delete('/')
 async def delete():
